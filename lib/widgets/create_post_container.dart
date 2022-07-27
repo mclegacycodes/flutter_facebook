@@ -13,11 +13,15 @@ class CreatePostContainer extends StatelessWidget {
       color: Colors.orange,
       child: Column(
         children: [
-          Row(children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(),
-            )
-          ],)
+          Row(
+            children: const [
+              CircleAvatar(
+                radius: 30,
+                backgroundImage:
+                    NetworkImage('https://unsplash.com/photos/CqqblJOH41o'),
+              )
+            ],
+          )
         ],
       ),
     );
