@@ -3,7 +3,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:todolist/config/palette.dart';
 import 'package:todolist/data/data.dart';
 
-import '../widgets/create_post_container.dart';
+import '../widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -40,7 +40,9 @@ class HomeScreen extends StatelessWidget {
         ),
         SliverToBoxAdapter(
             child: CreatePostContainer(currentUser: currentUser)),
-        SliverToBoxAdapter(child: Rooms(onineUsers: onlineUsers)),
+        SliverPadding(
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
+            sliver: SliverToBoxAdapter(child: Rooms(onlineUsers: onlineUsers))),
       ],
     ));
   }
