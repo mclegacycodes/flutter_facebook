@@ -22,6 +22,7 @@ class HomeScreen extends StatelessWidget {
                 fontSize: 28.0,
                 fontWeight: FontWeight.bold),
           ),
+          floating: true,
           actions: [
             IconButton(
               onPressed: () {},

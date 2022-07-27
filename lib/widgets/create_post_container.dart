@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import '../models/user_model.dart';
 
 class CreatePostContainer extends StatelessWidget {
@@ -14,11 +14,11 @@ class CreatePostContainer extends StatelessWidget {
       child: Column(
         children: [
           Row(
-            children: const [
+            children: [
               CircleAvatar(
-                radius: 30,
+                radius: 20.0,
                 backgroundImage:
-                    NetworkImage('https://unsplash.com/photos/CqqblJOH41o'),
+                    CachedNetworkImageProvider(currentUser.imageUrl),
               )
             ],
           )
