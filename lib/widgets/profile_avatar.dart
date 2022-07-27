@@ -5,7 +5,12 @@ import 'package:todolist/config/palette.dart';
 class ProfileAvatar extends StatelessWidget {
   final bool isActive;
   final String imgUrl;
-  const ProfileAvatar({Key? key, this.isActive = false, required this.imgUrl})
+  final bool hasBorder;
+  const ProfileAvatar(
+      {Key? key,
+      this.isActive = false,
+      required this.imgUrl,
+      this.hasBorder = false})
       : super(key: key);
 
   @override
@@ -13,8 +18,12 @@ class ProfileAvatar extends StatelessWidget {
     return Stack(
       children: [
         CircleAvatar(
+          backgroundColor: Palette.facebookBlue,
           radius: 20.0,
-          backgroundImage: CachedNetworkImageProvider(imgUrl),
+          child: CircleAvatar(
+            radius: hasBorder ? 18.0 : 20.0,
+            backgroundImage: CachedNetworkImageProvider(imgUrl),
+          ),
         ),
         isActive
             ? const Positioned(

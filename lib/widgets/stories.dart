@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:todolist/config/palette.dart';
+import 'package:todolist/widgets/widgets.dart';
 
 import '../models/story_model.dart';
 import '../models/user_model.dart';
@@ -15,7 +17,7 @@ class Stories extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 200,
-      color: Colors.purple,
+      color: Colors.white,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
@@ -49,12 +51,53 @@ class _StoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        CachedNetworkImage(
-          imageUrl: isAddStory ? currentUser!.imageUrl : story!.imageUrl,
+        ClipRRect(
+          borderRadius: BorderRadius.circular(12.0),
+          child: CachedNetworkImage(
+            imageUrl: isAddStory ? currentUser!.imageUrl : story!.imageUrl,
+            height: double.infinity,
+            width: 110.0,
+            fit: BoxFit.cover,
+          ),
+        ),
+        Container(
           height: double.infinity,
           width: 110.0,
-          fit: BoxFit.cover,
-        )
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12.0),
+              gradient: Palette.storyGradient),
+        ),
+        Positioned(
+          top: 8.0,
+          left: 8.0,
+          child: isAddStory
+              ? Container(
+                  height: 40,
+                  width: 40,
+                  decoration: const BoxDecoration(
+                      shape: BoxShape.circle, color: Colors.white),
+                  child: IconButton(
+                    padding: EdgeInsets.zero,
+                    icon: const Icon(Icons.add),
+                    iconSize: 30.0,
+                    color: Palette.facebookBlue,
+                    onPressed: () {},
+                  ),
+                )
+              : ProfileAvatar(
+                  imgUrl: story!.imageUrl,
+                  hasBorder: true,
+                ),
+        ),
+        Positioned(
+            bottom: 8.0,
+            left: 8.0,
+            right: 8.0,
+            child: Text(
+              isAddStory ? 'Add to Story' : story!.user.name,
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold),
+            ))
       ],
     );
   }
