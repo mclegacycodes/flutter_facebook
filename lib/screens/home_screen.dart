@@ -3,6 +3,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:todolist/config/palette.dart';
 import 'package:todolist/data/data.dart';
 
+import '../models/models.dart';
 import '../widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -50,6 +51,12 @@ class HomeScreen extends StatelessWidget {
               currentUser: currentUser,
               stories: stories,
             ))),
+        SliverList(
+            delegate: SliverChildBuilderDelegate(childCount: posts.length,
+                (context, index) {
+          final Post post = posts[index];
+          return PostContainer(post: post);
+        }))
       ],
     ));
   }
