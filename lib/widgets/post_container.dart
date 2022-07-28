@@ -1,7 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
 import 'package:todolist/widgets/widgets.dart';
 
 import '../models/models.dart';
@@ -17,8 +15,29 @@ class PostContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       color: Colors.white,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [_PostHeader(post: post)],
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _PostHeader(post: post),
+                const SizedBox(
+                  height: 4.0,
+                ),
+                Text(post.caption),
+                post.imageUrl != null
+                    ? const SizedBox.shrink()
+                    : const SizedBox(
+                        height: 6.0,
+                      )
+              ],
+            ),
+          ),
+          post.imageUrl != null
+              ? CachedNetworkImage(imageUrl: post.imageUrl.toString())
+              : const SizedBox.shrink()
+        ],
       ),
     );
   }
