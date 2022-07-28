@@ -168,18 +168,22 @@ class _PostButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        height: 25.0,
-        child: Row(
-          children: [
-            icon,
-            const SizedBox(
-              width: 4.0,
-            ),
-            Text(label)
-          ],
+    return Material(
+      color: Colors.white,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          height: 25.0,
+          child: Row(
+            children: [
+              icon,
+              const SizedBox(
+                width: 4.0,
+              ),
+              Text(label)
+            ],
+          ),
         ),
       ),
     );
