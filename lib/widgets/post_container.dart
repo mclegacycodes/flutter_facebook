@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:todolist/config/palette.dart';
 import 'package:todolist/widgets/widgets.dart';
 
@@ -139,9 +140,48 @@ class _PostStats extends StatelessWidget {
         ),
         const Divider(),
         Row(
-          children: [],
+          children: [
+            _PostButton(
+                icon: Icon(
+                  MdiIcons.thumbUpOutline,
+                  color: Colors.grey[600],
+                  size: 20.0,
+                ),
+                label: 'Like',
+                onTap: () {})
+          ],
         )
       ],
+    );
+  }
+}
+
+//create _postButton
+class _PostButton extends StatelessWidget {
+  final Icon icon;
+  final String label;
+  final VoidCallback onTap;
+
+  const _PostButton(
+      {Key? key, required this.icon, required this.label, required this.onTap})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 25.0,
+        child: Row(
+          children: [
+            icon,
+            const SizedBox(
+              width: 4.0,
+            ),
+            Text(label)
+          ],
+        ),
+      ),
     );
   }
 }
